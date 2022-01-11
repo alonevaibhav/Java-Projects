@@ -1,0 +1,59 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Practical1 {
+    public static void main(String[] args) {
+//        mini project
+//    aim: to create a game how play stone paper & scizer game with computer
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+        int you=0;
+        int computer=0;
+        System.out.println("Stone =0 \t paper=1 \t sizor=2");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Select one number among 0, 1 2 ");
+            int user = sc.nextInt(3);
+            System.out.println("now computer choice");
+            int compuer = rand.nextInt(3);
+            System.out.println(compuer);
+            if (user == 0 && compuer == 1) {
+                System.out.println("computer is win");
+                computer++;
+            }
+            else if (user == 0 && compuer == 2) {
+                System.out.println("yor are win");
+                you++;
+            }
+            else if (user == 1 && compuer == 0) {
+                System.out.println("you are win");
+                you++;
+            }
+            else if (user == 1 && compuer == 2) {
+                System.out.println("computer is win");
+                computer++;
+            }
+            else if (user == 2 && compuer == 0) {
+                System.out.println("computer is win");
+                computer++;
+            }
+            else if (user == 2 && compuer == 1) {
+                System.out.println("you are is win");
+                you++;
+            }
+            else{
+                System.out.println("match is tii");
+            }
+        }
+        System.out.println("All the Round is complete the winner is : ");
+        if (computer>you){
+            System.out.println("Computer !! . batter luck next time");
+        }
+        else {
+            System.out.println("You ..!! party pahije ");
+        }
+    }
+}
+
+
+
+
+
