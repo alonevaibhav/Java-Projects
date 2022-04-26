@@ -1,0 +1,244 @@
+import java.util.Scanner;
+import java.util.Random;
+
+class Vpay {
+    String name, last, add, email;
+    long link, pass, logs, passw, card;
+    int num, i, expi, cvv, vpass, xo, sec;
+    int numm = 0;
+    int fir = 0;
+    String p = "n";
+
+    Scanner sc = new Scanner(System.in);
+    Random rand = new Random();
+
+    void firstUserInterface() {
+        System.out.print("Welcome To Vpay Digital Online Payment App/side ");
+        System.out.println("\n");
+    }
+
+    void createAccount() {
+        System.out.println("Log In" + "  OR  Sign In");
+        System.out.println(" 0              1");
+        int b = sc.nextInt();
+        if (b == 0) {
+            logIn();
+        } else {
+            singIn();
+        }
+    }
+
+    void logIn() {
+        System.out.println("Login Id (Only 10 number): ");
+        sc.nextLong();
+        System.out.println("password (Only 6 number):");
+        sc.nextLong();
+        System.out.println("Sorry You Don't Have any Account Please Create Account ");
+        System.out.println("Sing In (Press 0 ) ");
+        int sin = sc.nextInt();
+        if (sin == 0) {
+            singIn();
+        }
+    }
+
+    void singIn() {
+        System.out.println("Entre Your First Name");
+        name = sc.next();
+        System.out.println("Entre Your last Name");
+        last = sc.next();
+        System.out.println("Entre Your Email Address");
+        add = sc.next();
+        System.out.println("Entre Your Number Who link to Bank");
+        link = sc.nextLong();
+        System.out.println("Your Vpay Log In Password (only 6 digit)");
+        pass = sc.nextLong();
+        System.out.println("You successfully Created Your Account");
+        System.out.println("Please Log In ");
+    }
+
+    void accountCreated() {
+        System.out.println("\n");
+        System.out.println("Log In" + "  OR  Sign In");
+        System.out.println(" 0              1");
+        int b = sc.nextInt();
+        for (int i = 1; i < 5; i++) {
+            if (b == 0) {
+                System.out.println("Login Id (Your registered Mobile Number): ");
+                logs = sc.nextLong();
+                System.out.println("password (Only 6 number):");
+                passw = sc.nextLong();
+
+                if ((logs == link) && (passw == pass)) {
+                    System.out.print("You successfully log in Your Account ");
+                    home();
+                    break;
+                } else {
+                    System.out.println("Wrong ID Or Password");
+                    System.out.println("Forgot ID or Pass(Press 9 otherwise Press 0)");
+                    int forg = sc.nextInt();
+                    if (forg == 9) {
+                        forgotPass();
+                    } else {
+
+                    }
+                }
+            } else if (b == 1) {
+                singIn();
+            }
+        }
+    }
+
+    void forgotPass() {
+        System.out.println("Entre Your Email Address");
+        email = sc.next();
+        if (email.equals(add)) {
+            System.out.println("Hello");
+            System.out.println("Your registered Phone Number is:" + link);
+            System.out.println("Your Password is:" + pass);
+            accountCreated();
+        } else {
+            System.out.println("Wrong Email Address");
+        }
+    }
+
+    void home() {
+        System.out.println("\n");
+        System.out.println("HELLO " + name.toUpperCase());
+        System.out.println("Profile (0)");
+        System.out.println("Account (1)");
+        System.out.println("");
+        num = sc.nextInt();
+        if (num == 0) {
+            profileInfo();
+        } else if (num == 1) {
+            for (i = 0; i < 20; i++) {
+                numm++;
+                if (numm == 1) {
+                    accountInfo();
+                    break;
+                }
+                if (2 <= numm) {
+                    newAccount();
+                    break;
+                }
+            }
+        } else {
+            home();
+        }
+    }
+
+    void profileInfo() {
+        System.out.print("Name: " + name.toUpperCase() + " ");
+        System.out.println(last.toUpperCase());
+        System.out.println("Email Id: " + add);
+        System.out.println("Phone Number: " + link);
+        System.out.println("Forgot ID or Pass(Press 9 otherwise Press 0)");
+        int forg = sc.nextInt();
+        if (forg == 9) {
+            forgotPass();
+        } else {
+            home();
+        }
+    }
+
+    void accountInfo() {
+        System.out.println("Add Your Account ");
+        System.out.println("Your Debit Card Number");
+        card = sc.nextLong();
+        System.out.println("Entre Your Experi Date ");
+        expi = sc.nextInt();
+        System.out.println("Entre Your CVV");
+        cvv = sc.nextInt();
+        vpass = rand.nextInt(10000);
+        System.out.println("Your Vpay Password is : " + vpass);
+        System.out.println("Your Process is Complete Please Entre 0 . For Home Entre 1");
+        int hom = sc.nextInt();
+        if (hom == 0) {
+            home();
+        } else {
+            newAccount();
+        }
+    }
+
+    void newAccount() {
+        System.out.println("Your Bank Account is HDFC ");
+        System.out.println("Debit Card Number Is :" + card);
+        System.out.println("Your UPI ID Is (Active) :- " + add.replace("@gmail.com", "@ybl"));
+        System.out.println("Your UPI ID Is (Active) :- " + add.replace("@gmail.com", "@951"));
+        System.out.println(" Check Balance (Y/N)");
+        p = sc.next();
+        if (p.equals("Y") || p.equals("y")) {
+            while (p.equals("Y") || p.equals("y")) {
+                checkBalence();
+                p = sc.next();
+            }
+        } else {
+            home();
+        }
+
+    }
+
+    void checkBalence() {
+        System.out.println("Enter Your Vpay Passward( 4 number)");
+        int VpayPass = sc.nextInt();
+        if (VpayPass == vpass) {
+            for (int j = 0; j < 10; j++) {
+                fir++;
+                if (fir == 1) {
+                    sec = rand.nextInt(100000);
+                    break;
+                }
+            }
+            System.out.println("Your Vpay Account Balance Is :-" + sec);
+        } else {
+            System.out.println(" Forgot Passward(Y/N)");
+            p = sc.next();
+            if (p.equals("Y") || p.equals("y")) {
+                while (p.equals("Y") || p.equals("y")) {
+                    System.out.println("Entre Your Debit Card Number ");
+                    int cardNumber = sc.nextInt();
+                    System.out.println("Entre Your Mobile Number ");
+                    int MobileNumber = sc.nextInt();
+                    if (cardNumber == card && MobileNumber == link) {
+                        System.out.println("Your Vpay Password is : " + vpass);
+                        home();
+                    }
+                    else {
+                        System.out.println("Something Is Wrong Try Again");
+                        home();
+                    }
+                    p = sc.next();
+                }
+            } else {
+                home();
+            }
+        }
+        System.out.println("Go to Home press 0");
+        int press=sc.nextInt();
+        if (press==0){
+            home();
+        }
+    }
+}
+
+class Vpay_Online_Payment_ {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Vpay payment = new Vpay();
+        payment.firstUserInterface();
+        payment.createAccount();
+        payment.accountCreated();
+    }
+}
+
+//        System.out.println(" Add Money OR (Y/N)");
+//        p = sc.next();
+//        if (p.equals("Y") || p.equals("y")) {
+//            while (p.equals("Y") || p.equals("y")) {
+//                addMoney();
+//                p = sc.next();
+//            }
+//        } else {
+//            home();
+//        }
